@@ -1,17 +1,19 @@
 import msvcrt
 import os
 import sys
-from enum import Enum
+from enum import IntEnum
 
-class Direction(Enum):
+class Direction(IntEnum):
     North = 0
     West = 1
     South = 2
     East = 3
 
-class Color(Enum):
+class Color(IntEnum):
     White = 0
     Black = 1
+
+DirectionArrows = ["^", "<", "v", ">"]
 
 class State:
     width = 100
@@ -65,15 +67,7 @@ class State:
         for posy in range(self.height):
             for posx in range(self.width):
                 if posx == self.x and posy == self.y:
-                    if self.dir == Direction.North:
-                        char = "^"
-                    elif self.dir == Direction.West:
-                        char = "<"
-                    elif self.dir == Direction.South:
-                        char = "v"
-                    elif self.dir == Direction.East:
-                        char = ">"
-                    print(char, end="")
+                    print(DirectionArrows[self.dir], end="")
                 elif self.arr[posx][posy] == Color.White:
                     print("░", end="")
                 else:
